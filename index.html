@@ -4,447 +4,250 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>胜航国际 Efficient Channel - 连接中国航空制造业与欧洲市场</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#003366',
+            secondary: '#0055a4',
+            accent: '#d4af37',
+            'text-dark': '#333333',
+            'text-light': '#f4f4f4',
+            'bg-light': '#ffffff',
+            'bg-grey': '#f9f9f9',
+          },
+          fontFamily: {
+            main: ['"Noto Sans SC"', 'sans-serif'],
+            heading: ['"Rajdhani"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    :root {
-      --primary: #003366; /* Deep Aviation Blue */
-      --secondary: #0055a4; /* Lighter Blue */
-      --accent: #d4af37; /* Gold/Metallic for premium feel */
-      --text-dark: #333333;
-      --text-light: #f4f4f4;
-      --bg-light: #ffffff;
-      --bg-grey: #f9f9f9;
-      --font-main: 'Noto Sans SC', sans-serif;
-      --font-heading: 'Rajdhani', sans-serif;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: var(--font-main);
-      color: var(--text-dark);
-      line-height: 1.6;
-      background-color: var(--bg-light);
-    }
-
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    /* Header */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      font-weight: 500;
-      color: var(--text-dark);
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--secondary); }
-
-    /* Hero Section */
-    .hero {
-      height: 90vh;
+    /* Custom styles for things Tailwind doesn't cover easily */
+    .hero-bg {
       background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&q=80');
       background-size: cover;
       background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--text-light);
-      padding: 0 2rem;
-      margin-top: 60px;
     }
-
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
     }
-
-    .hero-content p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-
-    .btn:hover { background: #b8962e; }
-
-    /* Sections */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.2rem;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title .line {
-      width: 60px;
-      height: 4px;
-      background: var(--accent);
-      margin: 0 auto;
-    }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--bg-grey);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-
-    .card:hover { transform: translateY(-5px); }
-
-    .card h3 {
-      color: var(--secondary);
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-    }
-
-    /* Why Us */
-    .bg-grey { background-color: var(--bg-grey); width: 100%; max-width: 100%; }
-    
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    @media (max-width: 768px) {
-      .comparison-grid { grid-template-columns: 1fr; }
-    }
-
-    .feature-list li {
-      margin-bottom: 0.8rem;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-
-    .feature-list li::before {
-      content: "✓";
-      color: var(--accent);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-
-    /* Services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-item {
-      text-align: center;
-      padding: 2rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-    }
-
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    /* Products */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .product-img {
-      height: 200px;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: 3rem;
-    }
-    
-    .product-content { padding: 1.5rem; }
-    .product-content h3 { color: var(--primary); margin-bottom: 0.5rem; }
-
-    /* Contact */
-    .contact-section {
-      background: var(--primary);
-      color: #fff;
-      text-align: center;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .contact-box {
-      max-width: 600px;
-      margin: 0 auto;
+    .glass-box {
       background: rgba(255,255,255,0.1);
-      padding: 3rem;
-      border-radius: 8px;
       backdrop-filter: blur(5px);
     }
-
-    .contact-info {
-      font-size: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .contact-info p { margin-bottom: 1rem; }
-
-    /* Footer */
-    footer {
-      background: #1a1a1a;
-      color: #888;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    /* Language Switcher */
-    .lang-switch {
-      margin-left: 2rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-    .lang-switch a {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-    .lang-switch a.active {
-      opacity: 1;
-      font-weight: bold;
-      color: var(--accent);
-    }
-
   </style>
 </head>
-<body>
+<body class="font-main text-text-dark bg-bg-light antialiased">
 
-  <header>
-    <div class="nav-container">
-      <div class="logo">Efficient<span>Channel</span> | 胜航国际</div>
-      <nav>
-        <div class="nav-links">
-          <a href="#about">公司介绍</a>
-          <a href="#why-us">核心优势</a>
-          <a href="#services">服务方案</a>
-          <a href="#products">合作品类</a>
-          <a href="#contact">联系我们</a>
-          <div class="lang-switch">
-            <a href="index.html" class="active">CN</a>
-            <a href="en.html">EN</a>
-            <a href="fr.html">FR</a>
-          </div>
+  <!-- Header -->
+  <header class="glass-nav fixed w-full top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <span class="font-heading text-2xl font-bold text-primary">Efficient<span class="text-accent">Channel</span> | 胜航国际</span>
         </div>
-      </nav>
+        
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex space-x-8 items-center">
+          <a href="#about" class="font-medium text-text-dark hover:text-secondary transition-colors">公司介绍</a>
+          <a href="#why-us" class="font-medium text-text-dark hover:text-secondary transition-colors">核心优势</a>
+          <a href="#services" class="font-medium text-text-dark hover:text-secondary transition-colors">服务方案</a>
+          <a href="#products" class="font-medium text-text-dark hover:text-secondary transition-colors">合作品类</a>
+          <a href="#contact" class="font-medium text-text-dark hover:text-secondary transition-colors">联系我们</a>
+          
+          <!-- Language Switcher -->
+          <div class="flex space-x-2 border-l pl-4 border-gray-300">
+            <a href="index.html" class="text-sm font-bold text-accent">CN</a>
+            <a href="en.html" class="text-sm opacity-70 hover:opacity-100">EN</a>
+            <a href="fr.html" class="text-sm opacity-70 hover:opacity-100">FR</a>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="text-text-dark hover:text-primary focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-text-dark hover:text-secondary hover:bg-gray-50">公司介绍</a>
+        <a href="#why-us" class="block px-3 py-2 rounded-md text-base font-medium text-text-dark hover:text-secondary hover:bg-gray-50">核心优势</a>
+        <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-text-dark hover:text-secondary hover:bg-gray-50">服务方案</a>
+        <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-text-dark hover:text-secondary hover:bg-gray-50">合作品类</a>
+        <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-text-dark hover:text-secondary hover:bg-gray-50">联系我们</a>
+        <div class="flex space-x-4 px-3 py-2 border-t border-gray-100 mt-2">
+          <a href="index.html" class="text-base font-bold text-accent">CN</a>
+          <a href="en.html" class="text-base opacity-70">EN</a>
+          <a href="fr.html" class="text-base opacity-70">FR</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>连接中国航空制造业与欧洲市场</h1>
-      <p>专注航空供应链20年 · 欧盟适航认证专家 · 中欧航空制造桥梁</p>
-      <a href="#contact" class="btn">立即咨询</a>
+  <!-- Hero Section -->
+  <section class="hero-bg h-[90vh] flex items-center justify-center text-center text-text-light px-4 mt-16">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">连接中国航空制造业与欧洲市场</h1>
+      <p class="text-xl md:text-2xl mb-10 opacity-90">专注航空供应链20年 · 欧盟适航认证专家 · 中欧航空制造桥梁</p>
+      <a href="#contact" class="inline-block px-8 py-4 bg-accent text-white rounded-md font-semibold hover:bg-[#b8962e] transition-colors shadow-lg">立即咨询</a>
     </div>
   </section>
 
-  <section id="about">
-    <div class="section-title">
-      <h2>公司介绍</h2>
-      <div class="line"></div>
+  <!-- About Section -->
+  <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">公司介绍</h2>
+      <div class="w-16 h-1 bg-accent mx-auto"></div>
     </div>
-    <div class="about-grid">
-      <div class="card">
-        <h3>专注进口代理 20年</h3>
-        <p>专注欧洲特别是法国高端航空零部件进口代理，国内主机厂服务覆盖率高。是中国商飞的合格供应商；与法国空客子供应商深度合作。</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-bg-grey p-8 rounded-lg shadow-sm hover:-translate-y-1 transition-transform duration-300">
+        <h3 class="text-xl font-bold text-secondary mb-4">专注进口代理 20年</h3>
+        <p class="text-gray-600">专注欧洲特别是法国高端航空零部件进口代理，国内主机厂服务覆盖率高。是中国商飞的合格供应商；与法国空客子供应商深度合作。</p>
       </div>
-      <div class="card">
-        <h3>赋能中国制造出海</h3>
-        <p>未来战略聚焦反向赋能中国制造商出口欧洲。深度挖掘中国优质供应商，搭建中欧航空制造合作桥梁，助力中国航空制造走向世界。</p>
+      <div class="bg-bg-grey p-8 rounded-lg shadow-sm hover:-translate-y-1 transition-transform duration-300">
+        <h3 class="text-xl font-bold text-secondary mb-4">赋能中国制造出海</h3>
+        <p class="text-gray-600">未来战略聚焦反向赋能中国制造商出口欧洲。深度挖掘中国优质供应商，搭建中欧航空制造合作桥梁，助力中国航空制造走向世界。</p>
       </div>
-      <div class="card">
-        <h3>图卢兹专家团队</h3>
-        <p>拥有法国图卢兹专家团队，具备丰富的欧洲和美国适航认证经验，确保产品符合欧盟航空供应链准入标准，规避合规风险。</p>
+      <div class="bg-bg-grey p-8 rounded-lg shadow-sm hover:-translate-y-1 transition-transform duration-300">
+        <h3 class="text-xl font-bold text-secondary mb-4">图卢兹专家团队</h3>
+        <p class="text-gray-600">拥有法国图卢兹专家团队，具备丰富的欧洲和美国适航认证经验，确保产品符合欧盟航空供应链准入标准，规避合规风险。</p>
       </div>
     </div>
   </section>
 
-  <div class="bg-grey">
-    <section id="why-us">
-      <div class="section-title">
-        <h2>为什么选择我们</h2>
-        <div class="line"></div>
+  <!-- Why Us Section -->
+  <div class="bg-bg-grey w-full">
+    <section id="why-us" class="py-20 px-4 max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">为什么选择我们</h2>
+        <div class="w-16 h-1 bg-accent mx-auto"></div>
       </div>
-      <div class="comparison-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h3>传统外贸公司的局限</h3>
-          <ul class="feature-list" style="color: #666;">
-            <li style="list-style: none; padding-left: 0;">❌ 仅提供单纯物流通关服务</li>
-            <li style="list-style: none; padding-left: 0;">❌ 无行业资质，被动接单</li>
-            <li style="list-style: none; padding-left: 0;">❌ 无法提供专业认证支持</li>
+          <h3 class="text-2xl font-bold mb-6 text-gray-800">传统外贸公司的局限</h3>
+          <ul class="space-y-4 text-gray-600">
+            <li class="flex items-start"><span class="mr-2">❌</span> 仅提供单纯物流通关服务</li>
+            <li class="flex items-start"><span class="mr-2">❌</span> 无行业资质，被动接单</li>
+            <li class="flex items-start"><span class="mr-2">❌</span> 无法提供专业认证支持</li>
           </ul>
         </div>
         <div>
-          <h3>我们的增值服务</h3>
-          <ul class="feature-list">
-            <li>欧洲航空分包商精准匹配</li>
-            <li>EASA认证文件包全程支持</li>
-            <li>欧洲客户验厂预审核服务</li>
-            <li>拥有欧盟航空供应链丰富资质</li>
+          <h3 class="text-2xl font-bold mb-6 text-gray-800">我们的增值服务</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span> 欧洲航空分包商精准匹配</li>
+            <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span> EASA认证文件包全程支持</li>
+            <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span> 欧洲客户验厂预审核服务</li>
+            <li class="flex items-start"><span class="text-accent font-bold mr-2">✓</span> 拥有欧盟航空供应链丰富资质</li>
           </ul>
         </div>
       </div>
     </section>
   </div>
 
-  <section id="services">
-    <div class="section-title">
-      <h2>服务方案</h2>
-      <div class="line"></div>
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-4 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">服务方案</h2>
+      <div class="w-16 h-1 bg-accent mx-auto"></div>
     </div>
-    <div class="services-grid">
-      <div class="service-item">
-        <div class="service-icon">🛡️</div>
-        <h3>市场准入护航</h3>
-        <p>欧盟技术标准符合性预审、ASD-STE100规范英文技术文档编制、欧洲市场开拓。</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center p-8 border border-gray-100 rounded-lg hover:shadow-lg transition-shadow">
+        <div class="text-4xl text-primary mb-4">🛡️</div>
+        <h3 class="text-xl font-bold mb-4">市场准入护航</h3>
+        <p class="text-gray-600">欧盟技术标准符合性预审、ASD-STE100规范英文技术文档编制、欧洲市场开拓。</p>
       </div>
-      <div class="service-item">
-        <div class="service-icon">🤝</div>
-        <h3>欧洲渠道建设</h3>
-        <p>对接法国 Aerospace Valley 产业集群，企业定向推广，利用图卢兹本地资源提升知名度。</p>
+      <div class="text-center p-8 border border-gray-100 rounded-lg hover:shadow-lg transition-shadow">
+        <div class="text-4xl text-primary mb-4">🤝</div>
+        <h3 class="text-xl font-bold mb-4">欧洲渠道建设</h3>
+        <p class="text-gray-600">对接法国 Aerospace Valley 产业集群，企业定向推广，利用图卢兹本地资源提升知名度。</p>
       </div>
-      <div class="service-item">
-        <div class="service-icon">⚖️</div>
-        <h3>交易风险管控</h3>
-        <p>欧洲客户背调（地缘政治/商业状况）、欧元结算汇率对冲方案，确保资金安全。</p>
+      <div class="text-center p-8 border border-gray-100 rounded-lg hover:shadow-lg transition-shadow">
+        <div class="text-4xl text-primary mb-4">⚖️</div>
+        <h3 class="text-xl font-bold mb-4">交易风险管控</h3>
+        <p class="text-gray-600">欧洲客户背调（地缘政治/商业状况）、欧元结算汇率对冲方案，确保资金安全。</p>
       </div>
     </div>
   </section>
 
-  <div class="bg-grey">
-    <section id="products">
-      <div class="section-title">
-        <h2>重点合作品类</h2>
-        <div class="line"></div>
+  <!-- Products Section -->
+  <div class="bg-bg-grey w-full">
+    <section id="products" class="py-20 px-4 max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">重点合作品类</h2>
+        <div class="w-16 h-1 bg-accent mx-auto"></div>
       </div>
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-img">🔩</div>
-          <div class="product-content">
-            <h3>航空标准件、紧固件</h3>
-            <p>欧洲市场年需求量达数亿件。发挥中国制造技术成熟、成本控制优势，建立长期合作。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gray-200 flex items-center justify-center text-6xl text-gray-500">🔩</div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">航空标准件、紧固件</h3>
+            <p class="text-gray-600">欧洲市场年需求量达数亿件。发挥中国制造技术成熟、成本控制优势，建立长期合作。</p>
           </div>
         </div>
-        <div class="product-card">
-          <div class="product-img">✈️</div>
-          <div class="product-content">
-            <h3>钛合金结构件</h3>
-            <p>满足欧洲高标准质量要求。协助中国供应商满足技术标准与合规要求，进入高端市场。</p>
+        <!-- Product 2 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gray-200 flex items-center justify-center text-6xl text-gray-500">✈️</div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">钛合金结构件</h3>
+            <p class="text-gray-600">满足欧洲高标准质量要求。协助中国供应商满足技术标准与合规要求，进入高端市场。</p>
           </div>
         </div>
-        <div class="product-card">
-          <div class="product-img">🔌</div>
-          <div class="product-content">
-            <h3>机载电气线束</h3>
-            <p>安全性与可靠性要求极高。提供市场准入与客户对接，促进中欧航空制造企业合作。</p>
+        <!-- Product 3 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gray-200 flex items-center justify-center text-6xl text-gray-500">🔌</div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">机载电气线束</h3>
+            <p class="text-gray-600">安全性与可靠性要求极高。提供市场准入与客户对接，促进中欧航空制造企业合作。</p>
           </div>
         </div>
       </div>
     </section>
   </div>
 
-  <section id="contact" class="contact-section">
-    <div class="contact-box">
-      <h2>联系我们</h2>
-      <p>开启您的欧洲航空市场之旅</p>
-      <div class="contact-info">
-        <p><strong>胜航国际有限公司 (Efficient Channel)</strong></p>
+  <!-- Contact Section -->
+  <section id="contact" class="bg-primary text-white py-20 px-4">
+    <div class="max-w-2xl mx-auto glass-box p-12 rounded-lg text-center">
+      <h2 class="text-3xl font-bold mb-4">联系我们</h2>
+      <p class="text-lg mb-8 opacity-90">开启您的欧洲航空市场之旅</p>
+      <div class="space-y-2 text-lg">
+        <p class="font-bold text-xl">胜航国际有限公司 (Efficient Channel)</p>
         <p>联系人：胡娅灵</p>
         <p>电话：18621209595</p>
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-[#1a1a1a] text-gray-400 py-8 text-center">
     <p>&copy; 202X 胜航国际有限公司 Efficient Channel. All Rights Reserved.</p>
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
