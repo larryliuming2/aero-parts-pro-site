@@ -22,4 +22,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=aero-parts-pro
+          command: pages deploy . --project-name=aero-parts-pro --commit-dirty=true
